@@ -11,7 +11,7 @@ export default function Layout({children}){
             <title>Your artist</title>
         </Head>
             <Navbar/>
-            <main>{children}</main>
+            <main className="main-container">{children}</main>
             <Footer/>
         
         </>
