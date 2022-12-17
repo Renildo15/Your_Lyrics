@@ -1,4 +1,3 @@
-import Link from "next/Link"
 import Image from "next/image"
 
 import styles from '../styles/Navbar.module.css'
@@ -13,10 +12,10 @@ export default function Navbar(){
 
             <ul className={styles.link_items}>
                 <li>
-                    <Link href="/">Home</Link>
+                   Home
                 </li>
                 <li>
-                    <Link href="about">Sobre</Link>
+                    Sobre
                 </li>
             </ul>
         </nav>
