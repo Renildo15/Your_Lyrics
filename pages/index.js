@@ -19,7 +19,7 @@ export function TheForm({filtro, url, acao}){
                     {...register("titleSearchString", { required: true, minLength: 3})} 
                     type="text" 
                     autoComplete="true"
-                    placeholder='Título'
+                    placeholder='Nome do artista...'
                 />
 
                 {errors.titleSearchString && <span>Insira no mínimo três caracteres   </span>}
@@ -42,6 +42,8 @@ export function TheAnime({data,show}){
 
     return (
         <div>
+            <hr />
+            <br />
             <div className={styles.div_title}> 
                 <Image width={200} height={200} src={`https://www.vagalume.com.br/${data?.artist?.pic_medium}`} alt={data?.artist?.desc}/>
                 <h1>{data?.artist?.desc}</h1>
@@ -77,7 +79,53 @@ export function TheAnime({data,show}){
     
 }
 
-export default function Animes(){
+export function Letter({data,show}){
+    if (!show) return (<div></div>)
+
+    if (!data) return (<div></div>)
+
+    if (data.error) return (<div>falha na pesquisa</div>)
+
+    if (data.Response == 'False') return (<div>Não foi encontrado nenhum filme com essas informações </div>)
+
+
+    return(
+        <div>
+            <div className={styles.letras}>
+                <h2>Letras</h2>
+            </div>
+
+            <div>
+                <table className={styles.banda}>
+                    <thead>
+                        <tr>
+                            <th>Músicas</th>
+                            <th>Letras</th>
+                            <th>Tradução</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data?.artist?.lyrics?.item.map((l,i)=>
+                            <tr key={i}>
+                                <td>
+                                   {l?.desc}
+                                </td>
+                                <td>
+                                    <a href={`https://www.vagalume.com.br/${l.url}`}>Ver letra</a>
+                                </td>
+                                <td>
+                                    <a href={`https://www.vagalume.com.br/${l.turl}`}>Ver tradução</a>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    )
+}
+
+export default function Artists(){
 
     const [state, setState] = useState({url:'', titleSearchString:''});
 
@@ -110,8 +158,9 @@ export default function Animes(){
 
     return (
         <div>
-            <TheForm filtro={'Filtro de título'} url={state.url} acao={onClickHandler}/>
+            <TheForm filtro={'Nome do Artista'} url={state.url} acao={onClickHandler}/>
             <TheAnime data={error?{error:'Erro na pesquisa'}: data ? data: {data:''} } show={state.url !== ''} />
+            <Letter  data={error?{error:'Erro na pesquisa'}: data ? data: {data:''} } show={state.url !== ''}/>
         </div>
     )
 }

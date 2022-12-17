@@ -57,3 +57,12 @@
     margin-bottom: 10px;
     cursor: pointer;
 }
+
+.letras{
+    text-align: center;
+    margin: 20px;
+}
+
+.letras a{
+    text-decoration: none;
+}
