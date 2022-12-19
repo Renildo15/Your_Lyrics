@@ -7,7 +7,7 @@ export default function Navbar(){
         <nav className={styles.navbar}>
             <div className={styles.logo}>
                 <Image src="/imgs/lyric.png" width="30" height="30" alt="lyric"></Image>
-                <h1>Your Artits</h1>
+                <h1>Your Artists</h1>
             </div>
 
             <ul className={styles.link_items}>

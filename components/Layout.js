@@ -8,7 +8,7 @@ export default function Layout({children}){
         <>
         <Head>
             <link rel="shortcut icon" href="/imgs/lyric.ico" />
-            <title>Your artist</title>
+            <title>Your artists</title>
         </Head>
             <Navbar/>
             <main className="main-container">{children}</main>
